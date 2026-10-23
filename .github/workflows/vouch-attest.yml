@@ -1,0 +1,40 @@
+name: Vouch Attest
+on:
+  push:
+    branches: [main, 'codex/vouch-attest-*']
+    paths: ['oss/utterance-attest/**', '.github/workflows/vouch-attest.yml']
+  pull_request:
+    paths: ['oss/utterance-attest/**', '.github/workflows/vouch-attest.yml']
+permissions:
+  contents: read
+jobs:
+  python:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        python: ['3.9', '3.12']
+    defaults:
+      run:
+        working-directory: oss/utterance-attest/python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install -e '.[test]'
+      - run: python -m pytest -q
+      - run: python ../examples/basic.py
+  dart:
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: oss/utterance-attest/dart
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+      - run: dart analyze
+      - run: dart test
+      - run: dart run example/basic.dart

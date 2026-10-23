@@ -178,3 +178,21 @@ each accepts the other's precomputed output.
 
 **This is a test-only key** (`vectors/signed_payload.json`,
 `private_key_base64`). Never use it outside these test suites.
+
+## 7. Combined command verification
+
+`verify_for_command` (Python) and `Verification.verifyForCommand` (Dart) take a trusted public key, expected hub and member, recognised command, freshness window and optional clock value. The trusted key must come from an enrolled record outside the incoming envelope.
+
+The helper accepts only when all checks pass:
+
+1. Inputs fit the payload and command length limits of 8192 and 4096 characters, and the freshness window is nonnegative.
+2. Key and signature are canonical standard base64 with decoded lengths of 32 and 64 bytes.
+3. The signature verifies over the supplied payload.
+4. The payload has exactly the canonical seven fields, valid field types, finite confidence in [0, 1], and a valid UTC timestamp with three fractional digits. Rebuilding the canonical payload must reproduce the original bytes.
+5. Hub and member equal the caller's expected identities. The expected hub and any non-null expected member must be positive integers.
+6. The timestamp inside the signed payload passes the freshness rule in section 5.
+7. The recognised command normalises to nonempty text, and its hash equals the signed transcript hash.
+
+Malformed inputs return false. The helper does not use fuzzy transcript matching. Shared cases are in `vectors/verify_command.json`.
+
+Success grants no permission and records no consumption. Applications enforce policy and atomic replay protection separately. Normalisation strips punctuation and non-ASCII letters; applications must validate structured action parameters independently.

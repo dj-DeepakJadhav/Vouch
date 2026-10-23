@@ -8,6 +8,7 @@ from .normalise import normalise, transcript_hash
 from .matching import token_set_similarity, transcripts_match
 from .payload import canonical_payload
 from .attest import sign_attestation, verify_attestation, is_fresh, SignedAttestation
+from .verification import verify_for_command
 
 __all__ = [
     "normalise",
@@ -19,6 +20,7 @@ __all__ = [
     "verify_attestation",
     "is_fresh",
     "SignedAttestation",
+    "verify_for_command",
 ]
 
 __version__ = "0.1.0"

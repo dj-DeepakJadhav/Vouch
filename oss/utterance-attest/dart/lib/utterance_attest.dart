@@ -8,3 +8,4 @@ export 'src/normalise.dart';
 export 'src/matching.dart';
 export 'src/payload.dart';
 export 'src/attest.dart';
+export 'src/verification.dart';
