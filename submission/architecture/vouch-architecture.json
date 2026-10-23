@@ -1,0 +1,352 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Vouch \u00b7 household rules for connected tools",
+    "locale": "en",
+    "output": "submission/architecture/vouch-architecture.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/dj-DeepakJadhav/Vouch.git",
+      "revision": "main",
+      "provider": "github",
+      "link_mode": "web"
+    }
+  },
+  "components": [
+    {
+      "id": "hub",
+      "type": "security",
+      "label": "Local hub (optional)",
+      "sublabel": "TitaNet + Parakeet + Ed25519",
+      "tag": "OPTIONAL \u00b7 voiceprints local",
+      "pos": [
+        455,
+        40
+      ],
+      "size": [
+        225,
+        82
+      ],
+      "sources": [
+        {
+          "path": "hub/vouch_hub/cli.py",
+          "line": 153,
+          "end_line": 198
+        },
+        {
+          "path": "hub/vouch_hub/signing.py",
+          "line": 37,
+          "end_line": 46
+        }
+      ]
+    },
+    {
+      "id": "client",
+      "type": "frontend",
+      "label": "Alexa+ client (simulated)",
+      "sublabel": "Simulated identity \u00b7 real MCP",
+      "tag": "SIMULATED identity + client",
+      "pos": [
+        40,
+        245
+      ],
+      "size": [
+        225,
+        82
+      ],
+      "sources": [
+        {
+          "path": "vouch/vouch_flutter/lib/logic/alexa_controller.dart",
+          "line": 252,
+          "end_line": 317
+        }
+      ]
+    },
+    {
+      "id": "backend",
+      "type": "backend",
+      "label": "Serverpod backend",
+      "sublabel": "Evidence + policy + approval",
+      "tag": "USED APPROVAL \u2192 REJECT",
+      "pos": [
+        455,
+        245
+      ],
+      "size": [
+        225,
+        82
+      ],
+      "sources": [
+        {
+          "path": "vouch/vouch_server/lib/src/mcp/mcp_guard.dart",
+          "line": 109,
+          "end_line": 220
+        },
+        {
+          "path": "vouch/vouch_server/lib/src/mcp/mcp_guard.dart",
+          "line": 234,
+          "end_line": 325
+        },
+        {
+          "path": "vouch/vouch_server/lib/src/mcp/mcp_guard.dart",
+          "line": 495,
+          "end_line": 570
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "type": "backend",
+      "label": "Mock demo tools",
+      "sublabel": "List / purchase / door stubs",
+      "tag": "MOCK ACTIONS",
+      "pos": [
+        870,
+        245
+      ],
+      "size": [
+        225,
+        82
+      ],
+      "sources": [
+        {
+          "path": "vouch/vouch_server/lib/src/mcp/mcp_guard.dart",
+          "line": 234,
+          "end_line": 248
+        },
+        {
+          "path": "vouch/vouch_server/lib/src/mcp/mcp_guard.dart",
+          "line": 549,
+          "end_line": 570
+        }
+      ]
+    },
+    {
+      "id": "owner",
+      "type": "frontend",
+      "label": "Owner view (simulated)",
+      "sublabel": "Approval API stores decision",
+      "tag": "PHONE VIEW SIMULATED",
+      "pos": [
+        455,
+        450
+      ],
+      "size": [
+        225,
+        82
+      ],
+      "sources": [
+        {
+          "path": "vouch/vouch_server/lib/src/approval/approval_endpoint.dart",
+          "line": 109,
+          "end_line": 172
+        },
+        {
+          "path": "README.md",
+          "line": 50,
+          "end_line": 63
+        }
+      ]
+    },
+    {
+      "id": "db",
+      "type": "database",
+      "label": "PostgreSQL",
+      "sublabel": "Policy, approvals, audit",
+      "pos": [
+        870,
+        450
+      ],
+      "size": [
+        225,
+        82
+      ],
+      "sources": [
+        {
+          "path": "vouch/vouch_server/lib/src/mcp/mcp_guard.dart",
+          "line": 270,
+          "end_line": 294
+        },
+        {
+          "path": "vouch/vouch_server/lib/src/mcp/mcp_guard.dart",
+          "line": 520,
+          "end_line": 562
+        },
+        {
+          "path": "vouch/vouch_server/lib/src/audit/audit_endpoint.dart",
+          "line": 37,
+          "end_line": 48
+        }
+      ]
+    },
+    {
+      "id": "filter",
+      "type": "security",
+      "label": "Local export + filter",
+      "sublabel": "Allowlisted metadata only",
+      "tag": "OWNER-PROVIDED JSON",
+      "pos": [
+        870,
+        700
+      ],
+      "size": [
+        225,
+        82
+      ],
+      "sources": [
+        {
+          "path": "jobs/nightly_review/main.py",
+          "line": 201,
+          "end_line": 242
+        },
+        {
+          "path": "jobs/nightly_review/aws_audit.py",
+          "line": 20,
+          "end_line": 65
+        },
+        {
+          "path": "vouch/vouch_server/lib/src/audit/audit_endpoint.dart",
+          "line": 37,
+          "end_line": 48
+        }
+      ]
+    },
+    {
+      "id": "lambda",
+      "type": "cloud",
+      "label": "AWS Lambda",
+      "sublabel": "On demand \u00b7 advisory report",
+      "tag": "ON DEMAND \u00b7 ADVISORY",
+      "pos": [
+        455,
+        700
+      ],
+      "size": [
+        225,
+        82
+      ],
+      "sources": [
+        {
+          "path": "jobs/nightly_review/aws_audit.py",
+          "line": 69,
+          "end_line": 109
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "type": "database",
+      "label": "Private Amazon S3",
+      "sublabel": "Encrypted reports \u00b7 7-day expiry",
+      "tag": "NO PERMISSION CHANGES",
+      "pos": [
+        40,
+        700
+      ],
+      "size": [
+        225,
+        82
+      ],
+      "sources": [
+        {
+          "path": "jobs/nightly_review/deploy_aws.py",
+          "line": 15,
+          "end_line": 29
+        },
+        {
+          "path": "jobs/nightly_review/aws_audit.py",
+          "line": 97,
+          "end_line": 109
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "mcp",
+      "from": "client",
+      "to": "backend",
+      "label": "MCP tools/call",
+      "variant": "emphasis"
+    },
+    {
+      "id": "evidence",
+      "from": "hub",
+      "to": "backend",
+      "label": "signed evidence",
+      "variant": "security"
+    },
+    {
+      "id": "approval",
+      "from": "owner",
+      "to": "backend",
+      "label": "approve via API",
+      "variant": "security"
+    },
+    {
+      "id": "execution",
+      "from": "backend",
+      "to": "tools",
+      "label": "allowed / approved",
+      "variant": "emphasis"
+    },
+    {
+      "id": "persist",
+      "from": "backend",
+      "to": "db",
+      "label": "read / write",
+      "variant": "default"
+    },
+    {
+      "id": "export",
+      "from": "db",
+      "to": "filter",
+      "label": "owner export file",
+      "variant": "dashed"
+    },
+    {
+      "id": "invoke",
+      "from": "filter",
+      "to": "lambda",
+      "label": "sanitised metadata",
+      "variant": "dashed"
+    },
+    {
+      "id": "store",
+      "from": "lambda",
+      "to": "s3",
+      "label": "write JSON report",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "violet",
+      "title": "Read the demo correctly",
+      "items": [
+        "Client, speaker identity and phone view are simulated.",
+        "Backend checks run; connected tools are mock actions.",
+        "The optional local hub is a separate implementation path."
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Approval boundary",
+      "items": [
+        "Sensitive requests wait for the owner.",
+        "Continuations check household, tool and argument hash.",
+        "Expired or already-used approvals are rejected."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Separate AWS reporting path",
+      "items": [
+        "Owner export file feeds an explicit on-demand CLI invocation.",
+        "Raw utterances, audio and tokens are excluded before upload.",
+        "Reports are advisory; they cannot authorise tool execution."
+      ]
+    }
+  ]
+}

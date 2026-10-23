@@ -1,0 +1,15 @@
+### Lifecycle status of a T2 step-up [Approval] request, decided by the
+### household owner from the Flutter admin app while an MCP `tools/call`
+### is paused awaiting input (see mcp/requestState in the MCP guard).
+enum: ApprovalStatus
+values:
+  ### Awaiting an owner decision; still within [Approval.expiresAt].
+  - pending
+  ### Owner approved the action. May still be consumed at most once (see
+  ### [Approval.used]) — approval alone does not re-run the tool.
+  - approved
+  ### Owner explicitly denied the action.
+  - denied
+  ### [Approval.expiresAt] passed with no owner decision (marked by
+  ### ApprovalExpiryFutureCall).
+  - expired

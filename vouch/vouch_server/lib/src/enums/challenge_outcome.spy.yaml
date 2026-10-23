@@ -1,0 +1,9 @@
+### The result of a knowledge-grounded challenge issued as a step-up check.
+enum: ChallengeOutcome
+values:
+  ### The member answered correctly and the challenge was consumed.
+  - passed
+  ### The member answered incorrectly.
+  - failed
+  ### The challenge was not answered before its expiry and lapsed unused.
+  - expired

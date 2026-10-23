@@ -1,0 +1,5 @@
+# Local validation receipts contain absolute machine paths.
+*.delivery.json
+*.finalize.json
+*.finalize-summary.json
+*.browser-check.json

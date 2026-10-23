@@ -1,0 +1,152 @@
+[
+  {
+    "input": "Alexa, add milk to the list",
+    "normalised": "add milk to the list",
+    "hash": "8f025fe2a5f3ea44a3be23b83d69334addcf5815ec28679f162473c21fdbde61"
+  },
+  {
+    "input": "Echo, what is the weather",
+    "normalised": "what is the weather",
+    "hash": "b328f82700746434f2681ec65fff9f60e327ccfdbb4f3ff8f9c107fa03cd986c"
+  },
+  {
+    "input": "Computer, set a timer for ten minutes",
+    "normalised": "set a timer for 10 minutes",
+    "hash": "9a94c3c1fedf835b91bb68f1c4f583e02a6e28a185d9f68e12463b0d82e79d68"
+  },
+  {
+    "input": "Amazon, play some music",
+    "normalised": "play some music",
+    "hash": "712b35a2fb914138ba68790d60bb89294eebd1f522ba6666684cc67e767c1d30"
+  },
+  {
+    "input": "ALEXA ADD TWENTY FIVE DOLLARS TO THE BUDGET",
+    "normalised": "add 25 dollars to the budget",
+    "hash": "088028d20269db86100e4f00aba87cdc19450f504914e4d0c37803534f9056b5"
+  },
+  {
+    "input": "alexa buy two hundred stickers",
+    "normalised": "buy 200 stickers",
+    "hash": "6827eb153228108078843dc6ccd630afd7d2b6308ed2022324a879a258e97db8"
+  },
+  {
+    "input": "alexa transfer a thousand euros",
+    "normalised": "transfer a 1000 euros",
+    "hash": "9e05f888e3c7158d844114018c74f704fba7c456717366e9f5d6cce784ebf20b"
+  },
+  {
+    "input": "add ten euros to the list",
+    "normalised": "add 10 euros to the list",
+    "hash": "3f53b38432311db6f61f9b189e49147e9a9acd1d6c402e3b74e3a489036d1c98"
+  },
+  {
+    "input": "buy 25 stickers",
+    "normalised": "buy 25 stickers",
+    "hash": "7a0ee6cb3757b33d7c3db8987db03b206ed4812180c75c3619819d2163ce965f"
+  },
+  {
+    "input": "Alexa,    add   milk   to   the   list",
+    "normalised": "add milk to the list",
+    "hash": "8f025fe2a5f3ea44a3be23b83d69334addcf5815ec28679f162473c21fdbde61"
+  },
+  {
+    "input": "alexa what's the time?",
+    "normalised": "what s the time",
+    "hash": "cf0fe980041c133628e2a921f9f79238290836382acce6443091b459597a3104"
+  },
+  {
+    "input": "Alexa -- add eggs, milk, and bread!",
+    "normalised": "add eggs milk and bread",
+    "hash": "09bd4b2e66f411819a42b7b7c41afe388dc9c5ed6579fb4a363188c5c186a672"
+  },
+  {
+    "input": "twenty two apples",
+    "normalised": "22 apples",
+    "hash": "6e01fd676594c54d6a0a559f501aa4b62e1b3df3a5804d8482957fabf405e5e9"
+  },
+  {
+    "input": "one hundred and one balloons",
+    "normalised": "100 and 1 balloons",
+    "hash": "810164c4c3a4031b9561642675e8e5f3657b48d016c83cae67b3164f284efea2"
+  },
+  {
+    "input": "nineteen ninety nine",
+    "normalised": "118",
+    "hash": "85daaf6f7055cd5736287faed9603d712920092c4f8fd0097ec3b650bf27530e"
+  },
+  {
+    "input": "order three thousand five hundred bricks",
+    "normalised": "order 3500 bricks",
+    "hash": "ad4e844c26c37c6167f800942675fe9e79e1976aab39227370ffeb61f000d5a5"
+  },
+  {
+    "input": "no wake word here just numbers seven eight nine",
+    "normalised": "no wake word here just numbers 24",
+    "hash": "18832a26b7e9d1c48f0b1ce5b5ee17113fa6328020a9c33300087d87be42509a"
+  },
+  {
+    "input": "Alexa",
+    "normalised": "",
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "input": "   ",
+    "normalised": "",
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "input": "ALEXA",
+    "normalised": "",
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "input": "echo echo test",
+    "normalised": "echo test",
+    "hash": "d960c2eba2b5400c91a09fdec42dabef3cfd2c19a92591a5b2e5437a99a5a91d"
+  },
+  {
+    "input": "alexa set volume to zero",
+    "normalised": "set volume to 0",
+    "hash": "046cdbaf1b1c5c199b5ccbecde3a6a228e7b8cb60270166a93534dcfadc63985"
+  },
+  {
+    "input": "a thousand thanks",
+    "normalised": "a 1000 thanks",
+    "hash": "512c56a270ad21b43b2da4a116930e0757793efc07fe5b0d1851499d65b92008"
+  },
+  {
+    "input": "twenty",
+    "normalised": "20",
+    "hash": "f5ca38f748a1d6eaf726b8a42fb575c3c71f1864a8143301782de13da2d9202b"
+  },
+  {
+    "input": "thirty four",
+    "normalised": "34",
+    "hash": "86e50149658661312a9e0b35558d84f6c6d3da797f552a9657fe0558ca40cdef"
+  },
+  {
+    "input": "nineteen",
+    "normalised": "19",
+    "hash": "9400f1b21cb527d7fa3d3eabba93557a18ebe7a2ca4e471cfe5e4c5b4ca7f767"
+  },
+  {
+    "input": "alexa buy eleven twelve thirteen",
+    "normalised": "buy 36",
+    "hash": "a4940ea2f415a5b44006402f7727d070a1d7c99e46dc77f0d6f9109859aa6245"
+  },
+  {
+    "input": "Compute the answer",
+    "normalised": "compute the answer",
+    "hash": "1e7cbde0e53f0e27f4c23d2ea4717044b8e7fea4b5dea3caa976fa3e8f763785"
+  },
+  {
+    "input": "Alexa: what time is it?!",
+    "normalised": "what time is it",
+    "hash": "cbe649f8e0039474b8f9860b9c39e740883affb4f1c0ac850404572172a08a9a"
+  },
+  {
+    "input": "ALEXA, add café au lait to the list",
+    "normalised": "add caf au lait to the list",
+    "hash": "004fd810f338765060f67321473f903d6b403ecd5f8829474c4fba42512add99"
+  }
+]

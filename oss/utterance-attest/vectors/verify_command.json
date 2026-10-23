@@ -1,0 +1,16 @@
+{
+  "description": "Both implementations verify the signed_payload.json fixture against these explicit identity, time and command checks.",
+  "cases": [
+    {"name":"fresh exact command", "command":"send 10 dollars to mom", "hubId":1, "memberId":42, "now":"2026-09-24T12:00:30.000Z", "maxAgeSeconds":30, "expected":true},
+    {"name":"normalised wake word and number words", "command":"Alexa, send ten dollars to Mom!", "hubId":1, "memberId":42, "now":"2026-09-24T12:00:01.000Z", "maxAgeSeconds":30, "expected":true},
+    {"name":"amount substitution", "command":"send 1000 dollars to mom", "hubId":1, "memberId":42, "now":"2026-09-24T12:00:01.000Z", "maxAgeSeconds":30, "expected":false},
+    {"name":"different action", "command":"delete 10 dollars to mom", "hubId":1, "memberId":42, "now":"2026-09-24T12:00:01.000Z", "maxAgeSeconds":30, "expected":false},
+    {"name":"wrong hub", "command":"send 10 dollars to mom", "hubId":2, "memberId":42, "now":"2026-09-24T12:00:01.000Z", "maxAgeSeconds":30, "expected":false},
+    {"name":"wrong member", "command":"send 10 dollars to mom", "hubId":1, "memberId":43, "now":"2026-09-24T12:00:01.000Z", "maxAgeSeconds":30, "expected":false},
+    {"name":"unresolved member differs", "command":"send 10 dollars to mom", "hubId":1, "memberId":null, "now":"2026-09-24T12:00:01.000Z", "maxAgeSeconds":30, "expected":false},
+    {"name":"expired signed timestamp", "command":"send 10 dollars to mom", "hubId":1, "memberId":42, "now":"2026-09-24T12:00:31.000Z", "maxAgeSeconds":30, "expected":false},
+    {"name":"future signed timestamp", "command":"send 10 dollars to mom", "hubId":1, "memberId":42, "now":"2026-09-24T11:59:59.000Z", "maxAgeSeconds":30, "expected":false},
+    {"name":"negative validity window", "command":"send 10 dollars to mom", "hubId":1, "memberId":42, "now":"2026-09-24T12:00:01.000Z", "maxAgeSeconds":-1, "expected":false},
+    {"name":"empty normalised command", "command":"!!!", "hubId":1, "memberId":42, "now":"2026-09-24T12:00:01.000Z", "maxAgeSeconds":30, "expected":false}
+  ]
+}

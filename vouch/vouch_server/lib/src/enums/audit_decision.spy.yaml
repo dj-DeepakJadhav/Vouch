@@ -1,0 +1,13 @@
+### The outcome recorded for an access decision in the append-only audit log.
+enum: AuditDecision
+values:
+  ### The action was allowed to proceed at the presented trust tier.
+  - permitted
+  ### The action required step-up verification (a knowledge challenge) before
+  ### being allowed to proceed.
+  - challenged
+  ### The action was refused because the required trust tier was not met.
+  - denied
+  ### The action was refused because the presented attestation had been
+  ### revoked.
+  - revoked

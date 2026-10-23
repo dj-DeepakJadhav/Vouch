@@ -1,0 +1,17 @@
+### The kind of live update carried by a [HouseholdEvent], as published to
+### the Flutter admin app's household status stream
+### (HouseholdEndpoint.householdStatus). Derived once, in
+### AuditService.append, from the underlying AuditEvent's `eventType` +
+### `decision` — see household_event.spy.yaml.
+enum: HouseholdEventKind
+values:
+  ### A hub-issued voice attestation was accepted.
+  - attestationAccepted
+  ### A hub-issued voice attestation was rejected.
+  - attestationRejected
+  ### A policy decision (permit/deny) was reached for a tool call.
+  - decision
+  ### A T2 step-up approval request is now pending an owner decision.
+  - approvalPending
+  ### A pending step-up approval was decided (approved/denied/expired).
+  - approvalDecided

@@ -1,0 +1,25 @@
+{
+  "description": "Shared transcript-matching test vectors. `similarity` is token_set_similarity(normalise(a), normalise(b)), and `match` is transcripts_match(a, b) — similarity >= 0.90 AND identical numeric-token multisets.",
+  "cases": [
+    {
+      "a": "Alexa, send ten dollars to Mom!",
+      "b": "send 10 dollars to mom",
+      "similarity": 1.0,
+      "match": true,
+      "note": "Wake word + number-word spelling differ but normalise to the same transcript."
+    },
+    {
+      "a": "Alexa, send one thousand dollars to Mom",
+      "b": "send 10 dollars to mom",
+      "similarity": 0.9166666666666666,
+      "match": false,
+      "note": "High token-set similarity (words mostly overlap) but the numeric tokens differ (1000 vs 10) — the numeric guard must reject this even though similarity alone clears the 0.90 threshold."
+    },
+    {
+      "a": "send 22 dollars now",
+      "b": "send twenty two dollars now",
+      "similarity": 1.0,
+      "match": true
+    }
+  ]
+}

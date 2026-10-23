@@ -1,0 +1,11 @@
+### The lifecycle status of a household member's enrolment.
+enum: MemberStatus
+values:
+  ### Enrolled and eligible for attestations.
+  - active
+  ### Enrolment quality has degraded (e.g. voice change, low sample quality)
+  ### and the member must re-enrol before further attestations are issued.
+  - needsReenrolment
+  ### Enrolment has been revoked (e.g. member left the household) and must
+  ### not be used to issue attestations.
+  - revoked

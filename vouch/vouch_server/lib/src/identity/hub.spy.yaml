@@ -1,0 +1,21 @@
+### A physical hub device (mic, VAD, TitaNet embeddings, attestation signing)
+### deployed for a household.
+class: Hub
+table: hub
+fields:
+  ### The household this hub is deployed for.
+  household: Household?, relation
+  ### The hub's public key, used to verify signatures on the attestations and
+  ### hub signatures it issues.
+  publicKey: String
+  ### The last time the hub was observed to be online.
+  lastSeen: DateTime?
+  ### The hub's software version string.
+  version: String
+indexes:
+  ### A public key identifies exactly one hub. Attestation verification resolves
+  ### the signing hub by this key, so a duplicate would make verification
+  ### ambiguous and is a security fault, not merely bad data.
+  hub_public_key_idx:
+    fields: publicKey
+    unique: true

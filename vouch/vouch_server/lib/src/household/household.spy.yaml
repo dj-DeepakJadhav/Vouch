@@ -1,0 +1,9 @@
+### A household: the unit that owns members, hubs, policy rules, and audit
+### history. Corresponds to one physical home / one hub deployment.
+class: Household
+table: household
+fields:
+  ### The household's display name (e.g. "The Smiths").
+  name: String
+  ### When the household was created.
+  createdAt: DateTime

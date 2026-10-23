@@ -1,0 +1,9 @@
+### Result of `DemoEndpoint.start`: the ids the app needs to drive the
+### simulated Alexa tab. Carries no key material and no token (mint one with
+### `DemoEndpoint.mintMcpToken`).
+class: DemoStart
+fields:
+  householdId: int
+  hubId: int
+  ownerMemberId: int
+  childMemberId: int

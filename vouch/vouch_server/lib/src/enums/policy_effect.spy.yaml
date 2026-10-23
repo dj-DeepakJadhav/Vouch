@@ -1,0 +1,9 @@
+### The effect a PolicyRule has when it matches: either it requires the
+### configured trust tier, or it denies the action outright regardless of
+### presented tier.
+enum: PolicyEffect
+values:
+  ### The action is permitted once the required trust tier is met.
+  - require
+  ### The action is refused outright, regardless of presented trust tier.
+  - deny

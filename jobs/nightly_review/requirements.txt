@@ -1,0 +1,4 @@
+# main.py uses only the Python 3.12 standard library (urllib, json, argparse)
+# — no third-party dependencies. This file exists so the Dockerfile and any
+# Nebius Serverless Jobs build step have something conventional to `pip
+# install -r`; it is intentionally empty of packages.

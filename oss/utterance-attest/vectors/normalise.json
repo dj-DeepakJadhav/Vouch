@@ -1,0 +1,36 @@
+{
+  "description": "Shared normalisation + hash test vectors. Both the Dart and Python implementations must produce byte-identical `normalised` output and `hash` for every case.",
+  "cases": [
+    {
+      "input": "Alexa, send ten dollars to Mom!",
+      "normalised": "send 10 dollars to mom",
+      "hash": "9471f51d10feef7fa815d8069e22f34f190b662eb13d9090a1aa04522f819754"
+    },
+    {
+      "input": "Send 10 dollars to Mom",
+      "normalised": "send 10 dollars to mom",
+      "hash": "9471f51d10feef7fa815d8069e22f34f190b662eb13d9090a1aa04522f819754"
+    },
+    {
+      "input": "Alexa, send one thousand dollars to Mom",
+      "normalised": "send 1000 dollars to mom",
+      "hash": "e369a3734e9e64f2bb6e0a77b7bcccaea1ec4d596c3f45fc00b0fac703a270c1"
+    },
+    {
+      "input": "send 22 dollars now",
+      "normalised": "send 22 dollars now",
+      "hash": "849ca7b9d071a33095c43b437837042ce5ce4707d8124a7cbeaff2074f3779fb"
+    },
+    {
+      "input": "send twenty two dollars now",
+      "normalised": "send 22 dollars now",
+      "hash": "849ca7b9d071a33095c43b437837042ce5ce4707d8124a7cbeaff2074f3779fb"
+    },
+    {
+      "input": "Hey Café, pay Bob $50.",
+      "normalised": "hey caf pay bob 50",
+      "hash": "dced157e52b72b9c01ec779d30b01fe759cdece6746de03b5938396fd494ac15",
+      "note": "ASCII-only \\w semantics: the accented 'é' is stripped as punctuation, not kept, and 'hey' is NOT a recognised wake word so it is not stripped."
+    }
+  ]
+}

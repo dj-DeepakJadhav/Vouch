@@ -1,0 +1,11 @@
+### Output of the anti-spoof classifier run on the hub at enrolment/attestation
+### time. This is a signal, not a security boundary — see VOUCH-DESIGN.md §8.
+enum: SpoofRisk
+values:
+  ### No indicators of a replayed, synthetic, or cloned voice sample.
+  - low
+  ### Some indicators present; attestation may still be issued but should be
+  ### weighed alongside other signals (e.g. requiring a challenge).
+  - medium
+  ### Strong indicators of spoofing. Attestation issuance should be refused.
+  - high

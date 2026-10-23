@@ -1,0 +1,79 @@
+.DS_Store
+*.log
+
+# Dart / Flutter
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+*.iml
+.idea/
+pubspec.lock
+
+# Serverpod generated
+vouch_server/generated/
+vouch_server/config/passwords.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.venv*/
+venv/
+*.egg-info/
+.pytest_cache/
+node_modules/
+
+# Models & audio — never commit weights or voice data
+models/
+*.nemo
+*.ckpt
+*.wav
+*.flac
+*.mp3
+
+# Secrets & biometric material — NEVER commit
+.env
+.env.*
+!.env.example
+!.env.template
+.aws/
+*.pem
+*.key
+*.p12
+*.pfx
+*.onnx
+*.safetensors
+secrets/
+enrolments/
+voiceprints/
+
+# Internal planning, strategy and agent context — never published
+Docs/
+FRICTION-LOG.md
+/CLAUDE.md
+/.claude/
+/.mcp.json
+
+# Editor / IDE
+.vscode/
+.idea/
+
+# Local diagram candidates and browser receipts contain machine-specific paths.
+.archify/
+
+# Production of the demo video is local; public screenshots live under submission/gallery.
+/videos/
+
+# Submission form drafts and local investigation notes are not project documentation.
+/submission/mini-challenges.md
+/vouch/vouch_server/tool/OFFLINE_SYNC_FINDINGS.md
+
+# Keep one contributor instruction file and root-level GitHub Actions only.
+/vouch/CLAUDE.md
+/vouch/.github/
+/oss/utterance-attest/.github/
+
+# The app workspace lock is committed; standalone library locks stay ignored.
+!/vouch/pubspec.lock

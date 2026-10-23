@@ -1,0 +1,38 @@
+### A single live update for a household's status stream
+### (HouseholdEndpoint.householdStatus), published to the Flutter admin app
+### over `session.messages` as it happens. NOT a table — this is a
+### transient wire event, not persisted state. The durable record of the
+### same fact is the [AuditEvent] row written alongside it; AuditService
+### .append is the single place that derives and publishes one of these
+### per audited event (see audit_service.dart).
+class: HouseholdEvent
+fields:
+  ### The household this event occurred within.
+  householdId: int
+  ### What kind of update this is.
+  kind: HouseholdEventKind
+  ### The member the event concerns, if one was identified.
+  memberId: int?
+  ### The action/tool call the event concerns, if applicable.
+  action: String?
+  ### The underlying audit decision, if applicable.
+  decision: AuditDecision?
+  ### Human-readable reason, mirrors the underlying AuditEvent.reason.
+  reason: String
+  ### The trust tier presented for this event, if any — mirrors the
+  ### underlying AuditEvent.tierPresent. Lets the Flutter admin app colour
+  ### its live feed by tier (T0 grey · T1 blue · T2 amber) consistently
+  ### with everywhere else (VOUCH-DESIGN.md §6.3).
+  tierPresent: TrustTier?
+  ### When the event occurred.
+  at: DateTime
+  ### The normalised transcript bound to this event, if applicable (set for
+  ### attestation events only). Lets the Flutter admin app's simulated
+  ### Alexa+ surface "follow the hub": on `attestationAccepted`, it replays
+  ### this exact utterance as the Alexa command over the real MCP endpoint.
+  transcript: String?
+  ### The underlying AuditEvent.eventType (e.g. "mcp.tool_call",
+  ### "policy.rule_created"), so the feed can describe administrative
+  ### events (a rule naming a member) differently from a member's own
+  ### command. Null on events published before this field existed.
+  eventType: String?

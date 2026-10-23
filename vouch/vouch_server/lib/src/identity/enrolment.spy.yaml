@@ -1,0 +1,26 @@
+### A voice enrolment linking a member to a hub. Records only an opaque
+### pointer to the voiceprint, never the biometric data itself.
+class: Enrolment
+table: enrolment
+fields:
+  ### The member this enrolment belongs to.
+  member: Member?, relation
+  ### The hub this enrolment was captured on and is stored against.
+  hub: Hub?, relation
+  ### Opaque pointer to the enrolled voiceprint, kept on the hub. This is
+  ### NEVER a biometric vector or embedding — Serverpod stores only a
+  ### reference, and even full database compromise yields no biometric data
+  ### (see VOUCH-DESIGN.md §8).
+  embeddingRef: String
+  ### Quality score of the enrolment sample(s), used to decide whether
+  ### re-enrolment is needed.
+  qualityScore: double
+  ### Number of voice samples used to build this enrolment.
+  sampleCount: int
+  ### When the enrolment was completed.
+  enrolledAt: DateTime
+  ### When the enrolment was revoked, if it has been.
+  revokedAt: DateTime?
+indexes:
+  enrolment_member_idx:
+    fields: memberId

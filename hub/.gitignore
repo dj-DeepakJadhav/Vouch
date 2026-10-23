@@ -1,0 +1,7 @@
+.venv/
+data/
+keys/
+*.wav
+*.npy
+__pycache__/
+.pytest_cache/

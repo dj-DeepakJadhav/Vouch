@@ -1,0 +1,21 @@
+name: AWS audit reviewer
+on:
+  push:
+    branches: [main]
+    paths: ['jobs/nightly_review/**', '.github/workflows/aws-review.yml']
+  pull_request:
+    paths: ['jobs/nightly_review/**', '.github/workflows/aws-review.yml']
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pytest
+      - run: python -m pytest jobs/nightly_review/test_aws_audit.py -q
+      - run: python jobs/nightly_review/deploy_aws.py --template-only
+      - run: python jobs/nightly_review/main.py --provider aws-lambda --input jobs/nightly_review/sample_export.json --dry-run

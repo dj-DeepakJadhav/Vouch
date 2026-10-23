@@ -1,0 +1,81 @@
+{
+  "__className__": "serverpod.DatabaseMigration",
+  "actions": [
+    {
+      "__className__": "serverpod.DatabaseMigrationAction",
+      "type": "alterTable",
+      "alterTable": {
+        "__className__": "serverpod.TableMigration",
+        "name": "approval",
+        "schema": "public",
+        "addColumns": [
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "transcriptMatch",
+            "fieldName": "transcriptMatch",
+            "columnType": 0,
+            "isNullable": true,
+            "dartType": "String?"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "heardTranscript",
+            "fieldName": "heardTranscript",
+            "columnType": 0,
+            "isNullable": true,
+            "dartType": "String?"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "transcriptSimilarity",
+            "fieldName": "transcriptSimilarity",
+            "columnType": 3,
+            "isNullable": true,
+            "dartType": "double?"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "requiredTier",
+            "fieldName": "requiredTier",
+            "columnType": 0,
+            "isNullable": true,
+            "dartType": "protocol:TrustTier?"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "presentTier",
+            "fieldName": "presentTier",
+            "columnType": 0,
+            "isNullable": true,
+            "dartType": "protocol:TrustTier?"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "policyReason",
+            "fieldName": "policyReason",
+            "columnType": 0,
+            "isNullable": true,
+            "dartType": "String?"
+          },
+          {
+            "__className__": "serverpod.ColumnDefinition",
+            "name": "ruleSource",
+            "fieldName": "ruleSource",
+            "columnType": 0,
+            "isNullable": true,
+            "dartType": "String?"
+          }
+        ],
+        "deleteColumns": [],
+        "modifyColumns": [],
+        "addIndexes": [],
+        "deleteIndexes": [],
+        "addForeignKeys": [],
+        "deleteForeignKeys": [],
+        "warnings": []
+      }
+    }
+  ],
+  "warnings": [],
+  "migrationApiVersion": 1
+}

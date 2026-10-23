@@ -1,0 +1,38 @@
+{
+  "region": "eu-central-1",
+  "function": "vouch-audit-review",
+  "invocationVerified": true,
+  "s3DownloadVerified": true,
+  "reportSha256": "9e4bd979bb42bed047dc26edc4c6067b0b7774650c48cef0bcccc2219745882e",
+  "inputIsIncludedSample": true,
+  "report": {
+    "schemaVersion": 1,
+    "provider": "aws-lambda",
+    "engine": "deterministic-v1",
+    "advisoryOnly": true,
+    "householdId": 1,
+    "since": "2026-09-24T00:00:00.000000Z",
+    "eventCount": 4,
+    "decisions": {
+      "allowed": 2,
+      "denied": 2
+    },
+    "summary": "Reviewed 4 audit events: 2 blocked requests, 2 patterns for owner review.",
+    "findings": [
+      {
+        "pattern": "repeated_denial",
+        "memberId": 5,
+        "action": "smart_lock.unlock",
+        "count": 2,
+        "severity": "warning"
+      },
+      {
+        "pattern": "unrecognised_sensitive_request",
+        "count": 2,
+        "severity": "warning"
+      }
+    ],
+    "inputSha256": "d9f630f1fe0fa82ca5344efd7d8940780d8750cb1efcb9270117cacd41da0481",
+    "generatedAt": "2026-10-22T18:13:58.217447+00:00"
+  }
+}

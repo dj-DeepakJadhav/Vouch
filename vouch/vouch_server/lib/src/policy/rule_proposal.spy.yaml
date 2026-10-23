@@ -1,0 +1,26 @@
+### A rule proposed by the Nemotron rule compiler from plain-language text,
+### mirroring [PolicyRule]'s fields plus a plain-English [explanation]. Not a
+### database table: a proposal only exists in memory between `preview` and
+### `confirm` (see RulesEndpoint) and is never persisted on its own.
+class: RuleProposal
+fields:
+  ### The member this rule applies to, if it is member-specific. Must
+  ### belong to the household the proposal was generated for.
+  memberId: int?
+  ### The member role this rule applies to, if it is role-specific (and
+  ### not member-specific).
+  role: MemberRole?
+  ### Pattern matched against the requested action/tool name — must be
+  ### exactly a known tool name, or a known tool name prefix ending `*`.
+  actionPattern: String
+  ### The minimum trust tier required for actions matching this pattern.
+  requiredTier: TrustTier
+  ### Whether a match requires the tier to be met, or denies the action
+  ### outright.
+  effect: PolicyEffect, default=require
+  ### Additional argument conditions, serialized as a JSON string (e.g.
+  ### `{"maxAmount":10,"currency":"EUR"}`).
+  argConditions: String?
+  ### Plain-English explanation of what this rule does, for the household
+  ### admin to confirm before it is saved.
+  explanation: String
