@@ -1,0 +1,23 @@
+### A cached risk classification for an MCP tool the household has no
+### explicit rule for and that has no built-in default tier (see
+### `ToolRiskClassifier` and `PolicyEngine`). Computed once (owner-triggered,
+### via `RulesEndpoint.classifyTool`) and reused thereafter rather than
+### calling Nemotron on every guard evaluation.
+class: ToolClassification
+table: tool_classification
+fields:
+  ### The tool name this classification applies to (global — tool names are
+  ### not household-scoped, since the MCP tool catalogue is shared).
+  toolName: String
+  ### The minimum trust tier this tool was classified as requiring.
+  tier: TrustTier
+  ### Plain-English reason for the classification, from the model.
+  reason: String
+  ### The model name that produced this classification.
+  model: String
+  ### When this classification was computed.
+  createdAt: DateTime
+indexes:
+  tool_classification_tool_name_idx:
+    fields: toolName
+    unique: true

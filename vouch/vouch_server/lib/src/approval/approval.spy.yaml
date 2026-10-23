@@ -1,0 +1,66 @@
+### A pending, approved, denied or expired T2 step-up request, created when
+### the MCP guard (see mcp/mcp_route.dart) determines a tool call requires
+### fresh owner confirmation. The Flutter admin app lists pending rows for
+### its household (ApprovalEndpoint.listPending) and decides them
+### (ApprovalEndpoint.decide); ApprovalExpiryFutureCall expires stale rows.
+class: Approval
+table: approval
+fields:
+  ### The household this approval belongs to.
+  household: Household?, relation
+  ### The speaker attested for this call, if any was resolved before the
+  ### step-up was requested (null if the speaker was unrecognised — step-up
+  ### can still be requested for an unrecognised speaker on a T2 action,
+  ### since PolicyEngine always sends T2 through step-up regardless of
+  ### attested tier).
+  member: Member?, relation(optional)
+  ### The tool/action name this approval covers (e.g. "unlock_front_door").
+  action: String
+  ### The tool call's arguments, canonical-JSON-encoded (same encoding used
+  ### to compute the requestState argsHash, so the two can be cross-checked).
+  argsJson: String
+  ### The utterance text this approval covers, for display in the admin UI
+  ### ("Allow: 'unlock the front door'?").
+  utterance: String
+  ### The speaker-verification confidence (0-1) from the attestation
+  ### consumed to trigger this step-up, if any was resolved before the
+  ### step-up was requested. `null` when the speaker was unrecognised (see
+  ### `member` doc above).
+  speakerConfidence: double?
+  ### How the hub attestation related to Alexa's command text when the guard
+  ### opened this step-up: "matched" (bound to this exact command),
+  ### "near_miss" (Alexa's wording differed from what the hub heard; the
+  ### speaker is plausible but NOT bound to this command) or "none" (no
+  ### attestation at all). Shown on the approval card so the owner never
+  ### approves a reworded command believing it was verified. Null on rows
+  ### created before this field existed.
+  transcriptMatch: String?
+  ### The (normalised) transcript the hub heard, from the attestation
+  ### consumed for this step-up. Null when there was no attestation.
+  heardTranscript: String?
+  ### Token-set similarity (0-1) between [heardTranscript] and Alexa's text.
+  transcriptSimilarity: double?
+  ### Tier the policy required at the original call (normally t2).
+  requiredTier: TrustTier?
+  ### Tier presented by the attestation at the original call.
+  presentTier: TrustTier?
+  ### The policy engine's reason at the original call (for display/audit;
+  ### retry legs report their own retry-specific reason).
+  policyReason: String?
+  ### sourceText of the PolicyRule that matched at the original call.
+  ruleSource: String?
+  ### Current lifecycle status.
+  status: ApprovalStatus, default=pending
+  ### Whether this approval has already been consumed to execute a tool
+  ### call. An approved row may be consumed at most once — this is the
+  ### replay guard for a repeated MRTR retry with the same requestState.
+  used: bool, default=false
+  ### When this approval was created.
+  createdAt: DateTime
+  ### When this approval expires if not decided (createdAt + 60s).
+  expiresAt: DateTime
+  ### When the owner decided (approved/denied), if they have.
+  decidedAt: DateTime?
+indexes:
+  approval_household_status_idx:
+    fields: householdId, status

@@ -1,0 +1,9 @@
+### Everything the Flutter admin app needs for its household home screen in
+### one round trip: the household itself, all its members, and all its
+### registered hubs. Not a table — assembled on demand by
+### `HouseholdEndpoint.myHousehold`.
+class: HouseholdOverview
+fields:
+  household: Household
+  members: List<Member>
+  hubs: List<Hub>

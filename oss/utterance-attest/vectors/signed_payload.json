@@ -1,0 +1,17 @@
+{
+  "description": "A fixed Ed25519 test keypair and one signed attestation payload. Both implementations' tests verify this signature, and each implementation signs the same payload with the same private key and asserts it produces byte-identical output — proving cross-language compatibility. This key is for tests only; never use it for anything real.",
+  "private_key_base64": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8=",
+  "public_key_base64": "A6EHv/POEL4dcN0Y50vAmWfk1jCbpQ1fHdyGZBJVMbg=",
+  "attestation": {
+    "hubId": 1,
+    "memberId": 42,
+    "tier": "t1",
+    "confidence": 0.97,
+    "spoofRisk": "low",
+    "transcriptSource": "send 10 dollars to mom",
+    "transcriptHash": "9471f51d10feef7fa815d8069e22f34f190b662eb13d9090a1aa04522f819754",
+    "capturedAt": "2026-09-24T12:00:00.000Z"
+  },
+  "canonicalPayload": "{\"hubId\":1,\"memberId\":42,\"tier\":\"t1\",\"confidence\":0.97,\"spoofRisk\":\"low\",\"transcriptHash\":\"9471f51d10feef7fa815d8069e22f34f190b662eb13d9090a1aa04522f819754\",\"capturedAt\":\"2026-09-24T12:00:00.000Z\"}",
+  "signatureBase64": "wv2daKwbpzRFkIny0POj9Y10E2p9Fr+LHiXdmkx1/iLrG/1AXOaJe0nwssZFS407yDX2KoIqvDxusqnaiHyqBw=="
+}

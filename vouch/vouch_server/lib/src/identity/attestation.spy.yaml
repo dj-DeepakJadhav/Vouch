@@ -1,0 +1,49 @@
+### A short-lived, hub-signed proof that a member was verified at a given
+### trust tier. Presented by clients to authorize privileged actions.
+###
+### Covers exactly ONE utterance: it is minted for a single spoken request
+### and is not a general-purpose session credential. [expiresAt] is a short
+### validity window (~3 seconds after [capturedAt]) and it is single-use —
+### once consumed it may not be presented again (see [singleUse],
+### [consumedAt]).
+class: Attestation
+table: attestation
+fields:
+  ### The member this attestation asserts the identity of.
+  member: Member?, relation
+  ### The trust tier proven by this attestation.
+  tier: TrustTier
+  ### When the attestation was issued.
+  issuedAt: DateTime
+  ### When the attestation expires and can no longer be used. A short
+  ### validity window — approximately 3 seconds after [capturedAt] — since
+  ### the attestation covers exactly one utterance.
+  expiresAt: DateTime
+  ### Confidence score of the underlying voice match.
+  confidence: double
+  ### Anti-spoof risk signal recorded at issuance time.
+  spoofRisk: SpoofRisk
+  ### The hub's signature over the attestation payload, used to verify it
+  ### was actually issued by the household's hub.
+  hubSig: String
+  ### Whether this attestation may only be consumed (used) once.
+  singleUse: bool
+  ### When a single-use attestation was consumed, if it has been.
+  consumedAt: DateTime?
+  ### Whether the attestation has been explicitly revoked before expiry.
+  revoked: bool
+  ### SHA-256 hash of the normalised transcript of the single utterance this
+  ### attestation covers. Never the plaintext transcript.
+  transcriptHash: String
+  ### The normalised transcript text itself (see [TranscriptMatcher.normalise]),
+  ### stored so the server can fuzzy-match it against the text Alexa+ hands
+  ### back for the same utterance. Not biometric data — it is the spoken
+  ### command text, already stripped of the wake word. [transcriptHash] must
+  ### equal sha256(transcriptNormalised).
+  transcriptNormalised: String
+  ### When the underlying utterance audio was captured by the hub. The
+  ### attestation's short validity window is measured from this timestamp.
+  capturedAt: DateTime
+indexes:
+  attestation_member_expires_idx:
+    fields: memberId, expiresAt

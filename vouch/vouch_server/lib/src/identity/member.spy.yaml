@@ -1,0 +1,24 @@
+### A person belonging to a household who can be voice-enrolled and issued
+### attestations.
+class: Member
+table: member
+fields:
+  ### The household this member belongs to.
+  household: Household?, relation
+  ### The member's display name, shown in admin UI and audit logs.
+  displayName: String
+  ### The member's role within the household.
+  role: MemberRole
+  ### The current lifecycle status of the member's enrolment.
+  status: MemberStatus
+  ### The Serverpod auth `userIdentifier` (UUID string) of the signed-in
+  ### user this member corresponds to, if this member has a linked login
+  ### (e.g. the household owner, who signs in to the Flutter admin app).
+  ### Null for members with no login of their own (e.g. a child who is
+  ### never expected to sign in). Used to resolve `session.authenticated`
+  ### to a `Member` row for owner-only authorization checks (see
+  ### ApprovalEndpoint).
+  authUserId: String?
+indexes:
+  member_auth_user_id_idx:
+    fields: authUserId

@@ -1,0 +1,34 @@
+### A household-configured rule mapping an action pattern to the minimum
+### trust tier required to permit it.
+class: PolicyRule
+table: policy_rule
+fields:
+  ### The household this rule applies to.
+  household: Household?, relation
+  ### The specific member this rule applies to, if it is member-specific.
+  ### Member-specific rules are more specific than role rules, which are
+  ### more specific than household-wide rules (no member, no role).
+  member: Member?, relation(optional)
+  ### The member role this rule applies to, if it is role-specific (and not
+  ### member-specific).
+  role: MemberRole?
+  ### Pattern matched against the requested action/tool name (e.g. a glob or
+  ### prefix such as "payments.*").
+  actionPattern: String
+  ### The minimum trust tier required for actions matching this pattern.
+  requiredTier: TrustTier
+  ### Whether a match requires the tier to be met, or denies the action
+  ### outright. Defaults to `require` (an unquoted enum value name is a
+  ### valid `default=` literal in Serverpod 4 model yaml).
+  effect: PolicyEffect, default=require
+  ### The original plain-language rule text this rule was derived from, if
+  ### any (e.g. as entered by a household admin).
+  sourceText: String?
+  ### Additional argument conditions for this rule, serialized as a JSON
+  ### string (e.g. `{"maxAmount":10,"currency":"EUR"}`).
+  argConditions: String?
+  ### Whether this rule is currently active.
+  enabled: bool
+indexes:
+  policy_rule_household_action_idx:
+    fields: householdId, actionPattern

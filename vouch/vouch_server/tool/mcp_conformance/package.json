@@ -1,0 +1,11 @@
+{
+  "name": "vouch-mcp-conformance",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Conformance check of vouch_server's hand-rolled /mcp route (spec 2026-07-28) against the official @modelcontextprotocol/sdk TypeScript client.",
+  "main": "index.js",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.1"
+  }
+}

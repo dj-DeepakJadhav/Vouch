@@ -1,0 +1,29 @@
+### A one-time, short-lived 6-digit code the hub prints (`python -m
+### vouch_hub pair`) so the household owner can link their anonymous
+### Flutter-app session to this household without ever creating a
+### password. Only the SHA-256 hash of the code is stored — the raw code
+### exists only in the hub's terminal output and the redeem request, never
+### at rest — mirroring `McpClient.tokenHash`'s treatment of bearer tokens.
+class: PairingCode
+table: pairing_code
+fields:
+  ### The household this code pairs a new owner session into.
+  household: Household?, relation
+  ### SHA-256 hex digest of the raw 6-digit code.
+  codeHash: String
+  ### The owner `Member` whose `authUserId` gets set when this code is
+  ### redeemed.
+  ownerId: int
+  ### When this code was created (also the hub's Ed25519-signed
+  ### `capturedAt`).
+  createdAt: DateTime
+  ### When this code stops being redeemable (createdAt + 10 minutes).
+  expiresAt: DateTime
+  ### When this code was redeemed, if ever. Null while still usable.
+  usedAt: DateTime?
+indexes:
+  ### A code hash is looked up directly on redeem; codes are single-use so
+  ### this need not be unique across all time, but IS enforced unique
+  ### while still valid at the application layer (see PairingEndpoint).
+  pairing_code_hash_idx:
+    fields: codeHash

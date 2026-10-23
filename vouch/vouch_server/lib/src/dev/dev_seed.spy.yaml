@@ -1,0 +1,17 @@
+### Result of `DevEndpoint.seedDemoHousehold`: the ids of everything just
+### created, plus the raw MCP bearer token (returned once — only its hash
+### is persisted). Not a database table; a plain transfer object for the
+### dev-only seeding endpoint.
+class: DemoSeed
+fields:
+  ### The newly created household's id.
+  householdId: int
+  ### The newly created hub's id.
+  hubId: int
+  ### The newly created owner member's id.
+  ownerMemberId: int
+  ### The newly created child member's id.
+  childMemberId: int
+  ### The raw (unhashed) MCP bearer token for the new `McpClient` row.
+  ### Shown once here; only its SHA-256 hash is stored server-side.
+  mcpToken: String

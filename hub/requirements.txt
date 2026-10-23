@@ -1,0 +1,10 @@
+# Install torch first (CPU/MPS wheel):
+#   pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+nemo_toolkit[asr]
+cryptography
+requests
+sounddevice
+numpy
+soundfile
+rapidfuzz
+pytest

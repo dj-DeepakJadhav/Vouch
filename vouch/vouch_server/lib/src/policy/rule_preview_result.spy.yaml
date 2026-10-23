@@ -1,0 +1,12 @@
+### The result of compiling plain-language rule text into proposals (see
+### RulesEndpoint.preview). Nothing here is ever persisted — proposals only
+### become PolicyRule rows via RulesEndpoint.confirm.
+class: RulePreviewResult
+fields:
+  ### Proposals that passed strict server-side validation.
+  proposals: List<RuleProposal>
+  ### A human-readable rejection reason for every proposal (well-formed or
+  ### not) that failed validation.
+  rejected: List<String>
+  ### The raw text Nemotron returned, for debugging/reporting.
+  rawModelOutput: String

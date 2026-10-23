@@ -1,0 +1,25 @@
+### A knowledge-grounded step-up challenge issued to a member. Passing it
+### proves household knowledge that a voice clone alone would not have.
+class: Challenge
+table: challenge
+fields:
+  ### The member this challenge was issued to.
+  member: Member?, relation
+  ### The question text presented to the member.
+  question: String
+  ### Hash of the expected answer; the plaintext answer is never stored.
+  answerHash: String
+  ### Identifier of the source used to ground the question (e.g. which
+  ### household fact / record it was derived from).
+  contextSource: String
+  ### When the challenge was issued.
+  issuedAt: DateTime
+  ### When the challenge expires if left unanswered.
+  expiresAt: DateTime
+  ### When the challenge was answered/consumed, if it has been.
+  consumedAt: DateTime?
+  ### The result of the challenge, once resolved.
+  outcome: ChallengeOutcome?
+indexes:
+  challenge_member_expires_idx:
+    fields: memberId, expiresAt

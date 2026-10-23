@@ -1,0 +1,11 @@
+### The trust tier proven by a valid attestation. Higher tiers require stronger
+### verification (voice match + liveness + optional knowledge challenge).
+enum: TrustTier
+values:
+  ### No verified speaker identity. Baseline / anonymous access only.
+  - t0
+  ### Voice match against an enrolled member, above the confidence threshold.
+  - t1
+  ### Voice match plus a passed knowledge-grounded challenge, or equivalent
+  ### step-up. Required for privileged actions.
+  - t2

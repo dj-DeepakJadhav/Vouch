@@ -1,0 +1,42 @@
+{
+  "householdId": 1,
+  "since": "2026-09-24T00:00:00.000000Z",
+  "events": [
+    {
+      "createdAt": "2026-09-24T02:11:03.000000Z",
+      "memberId": 3,
+      "action": "lights.turn_on",
+      "decision": "allowed",
+      "tierRequired": "t0",
+      "tierPresent": "t1",
+      "reason": "voice match, no step-up required"
+    },
+    {
+      "createdAt": "2026-09-24T03:47:19.000000Z",
+      "memberId": 5,
+      "action": "smart_lock.unlock",
+      "decision": "denied",
+      "tierRequired": "t2",
+      "tierPresent": "t0",
+      "reason": "speaker not recognised"
+    },
+    {
+      "createdAt": "2026-09-24T03:47:41.000000Z",
+      "memberId": 5,
+      "action": "smart_lock.unlock",
+      "decision": "denied",
+      "tierRequired": "t2",
+      "tierPresent": "t0",
+      "reason": "speaker not recognised"
+    },
+    {
+      "createdAt": "2026-09-24T09:05:00.000000Z",
+      "memberId": 2,
+      "action": "thermostat.set_temperature",
+      "decision": "allowed",
+      "tierRequired": "t0",
+      "tierPresent": "t1",
+      "reason": "voice match, no step-up required"
+    }
+  ]
+}

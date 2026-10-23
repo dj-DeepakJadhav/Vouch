@@ -1,0 +1,27 @@
+### A bearer-token credential authorizing an MCP client (e.g. an Alexa+
+### skill instance) to call the MCP server (POST /mcp) on behalf of one
+### household. The raw token is issued out-of-band and never stored; only
+### its SHA-256 hash is kept, so a database compromise does not disclose
+### usable credentials.
+class: McpClient
+table: mcp_client
+fields:
+  ### The household this token authorizes access to.
+  household: Household?, relation
+  ### SHA-256 hex digest of the raw bearer token. Looked up directly (the
+  ### digest is already uniformly distributed, so no additional salt/pepper
+  ### is needed the way a low-entropy password would require).
+  tokenHash: String
+  ### Human-readable label for this credential (e.g. "Alexa+ skill —
+  ### production"), shown in admin UI.
+  label: String
+  ### When this credential was issued.
+  createdAt: DateTime
+  ### Whether this credential has been revoked. Revoked tokens are rejected
+  ### even if otherwise well-formed and unexpired (tokens do not expire on
+  ### their own).
+  revoked: bool
+indexes:
+  mcp_client_token_hash_idx:
+    fields: tokenHash
+    unique: true

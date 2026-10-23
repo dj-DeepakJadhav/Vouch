@@ -1,0 +1,32 @@
+### A record of a single access decision. APPEND-ONLY BY DESIGN: no update or
+### delete endpoint may ever be exposed for this table. This satisfies a
+### GDPR Art. 30 record-of-processing requirement (see VOUCH-DESIGN.md §8).
+class: AuditEvent
+table: audit_event
+fields:
+  ### The household this event occurred within.
+  household: Household?, relation
+  ### The member the decision was made about, if one was identified.
+  member: Member?, relation(optional)
+  ### The kind of event being recorded (e.g. "attestation.issued",
+  ### "policy.check").
+  eventType: String
+  ### The action or tool call that was being authorized.
+  action: String
+  ### The decision reached for this event.
+  decision: AuditDecision
+  ### The trust tier required by policy for this action, if applicable.
+  tierRequired: TrustTier?
+  ### The trust tier actually presented, if any.
+  tierPresent: TrustTier?
+  ### Human-readable reason for the decision, for audit review.
+  reason: String
+  ### Confidence score associated with the decision, if applicable.
+  confidence: double?
+  ### When the event was recorded.
+  createdAt: DateTime
+  ### Arbitrary additional context serialized as JSON text, if any.
+  metadata: String?
+indexes:
+  audit_event_household_created_idx:
+    fields: householdId, createdAt

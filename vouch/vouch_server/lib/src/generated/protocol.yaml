@@ -1,0 +1,56 @@
+approval:
+  - listPending:
+  - decide:
+  - pendingApprovals:
+attestation:
+  - submit:
+audit:
+  - listRecent:
+  - exportSince:
+anonymousIdp:
+  - login:
+emailIdp:
+  - login:
+  - startRegistration:
+  - verifyRegistrationCode:
+  - finishRegistration:
+  - startPasswordReset:
+  - verifyPasswordResetCode:
+  - finishPasswordReset:
+  - hasAccount:
+jwtRefresh:
+  - refreshAccessToken:
+demo:
+  - available:
+  - start:
+  - attest:
+  - mintMcpToken:
+dev:
+  - demoAvailable:
+  - seedDemoHousehold:
+  - approveAsOwner:
+  - latestPendingApprovalId:
+  - issueTestAttestation:
+  - claimOwner:
+  - mintMcpToken:
+greeting:
+  - hello:
+household:
+  - householdStatus:
+  - hasHousehold:
+  - myHousehold:
+  - members:
+  - enrolments:
+  - revokeMember:
+  - restoreMember:
+enrolment:
+  - report:
+pairing:
+  - createCode:
+  - redeem:
+rules:
+  - preview:
+  - confirm:
+  - list:
+  - disable:
+  - classifyTool:

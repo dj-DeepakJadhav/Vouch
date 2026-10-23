@@ -1,0 +1,12 @@
+### The role a household member holds. Governs default policy expectations,
+### not authorization itself — authorization is decided by PolicyRule + tier.
+enum: MemberRole
+values:
+  ### Administers the household: manages members, policies, and enrolments.
+  - owner
+  ### A full adult member of the household.
+  - adult
+  ### A minor member of the household; typically subject to stricter policy.
+  - child
+  ### A non-resident occasional user (e.g. visiting relative, sitter).
+  - guest

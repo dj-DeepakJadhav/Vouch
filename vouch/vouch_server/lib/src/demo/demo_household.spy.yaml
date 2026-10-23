@@ -1,0 +1,32 @@
+### Server-side marker + key store for a hosted "demo household" created by
+### `DemoEndpoint.start`. Its existence is the ONLY thing that makes a
+### household a demo household: `DemoEndpoint.attest` refuses any household
+### without a row here, so a real hub-paired household can never be signed
+### for by the demo path. serverOnly: never serialised to the client, so the
+### hub private key below cannot leave the server through the protocol.
+class: DemoHousehold
+table: demo_household
+serverOnly: true
+fields:
+  ### The demo household this row marks.
+  householdId: int
+  ### The demo hub whose key [hubPrivateKeySeed] is.
+  hubId: int
+  ### The Serverpod auth `userIdentifier` of the caller who started it. One
+  ### demo household per caller (unique), which makes `start` idempotent.
+  ownerAuthUserId: String
+  ### Base64 32-byte Ed25519 seed of the demo hub's signing key. Generated
+  ### per household on the server and never returned by any endpoint. It
+  ### can only sign for this demo hub, which only serves this demo household.
+  hubPrivateKeySeed: String
+  ### When the demo household was created (drives the hourly rate limit).
+  createdAt: DateTime
+indexes:
+  demo_household_household_idx:
+    fields: householdId
+    unique: true
+  demo_household_owner_idx:
+    fields: ownerAuthUserId
+    unique: true
+  demo_household_created_idx:
+    fields: createdAt
